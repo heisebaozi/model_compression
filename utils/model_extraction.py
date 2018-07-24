@@ -4,7 +4,7 @@
 import os
 from tensorflow.python import pywrap_tensorflow
 
-checkpoint_dir = "/home/linkface/minlx/mimic_net/source/exp02/face_net_02/checkpoint_face_mimic_net/"
+checkpoint_dir = "/"
 
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 

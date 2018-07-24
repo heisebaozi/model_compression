@@ -34,17 +34,16 @@ import cv2
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-sys.path.append("/home/linkface/minlx/face_classification_new/network")
-sys.path.append("/home/linkface/minlx/face_classification_new/metrics")
-sys.path.append("/home/linkface/minlx/face_classification_new/utils")
+sys.path.append("/network")
+sys.path.append("/metrics")
+sys.path.append("/utils")
 
 # resnet networks from slim
 import face_net as face_net
 from test_verification import test_verification
 from mail_report import report
 
-#pb_model_dir = "/home/linkface/minlx/face_classification_new/exp12/pbfiles"
-pb_model_dir = "/home/linkface/weibiao/mimic/exp/exp04/pbfiles"
+pb_model_dir = "weibiao/mimic/exp/exp04/pbfiles"
 pb_model_name = "feature.pb"
 if not tf.gfile.Exists(pb_model_dir): #创建目录
     tf.gfile.MakeDirs(pb_model_dir)
@@ -137,52 +136,8 @@ def _parse_function(filename):
 if __name__ == "__main__":
     os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
-    #checkpoint_dir = "/home/linkface/minlx/face_classification_new/exp12/checkpoint"
-    checkpoint_dir = "/home/linkface/weibiao/mimic/exp/exp04/checkpoint"
+    checkpoint_dir = "weibiao/mimic/exp/exp04/checkpoint"
     freeze_graph(checkpoint_dir)
-    '''
-    pb_model = "/home/linkface/minlx/face_classification_new/exp01/pbfiles/feature.pb"
-    graph = load_graph(pb_model) 
-    # for op in graph.get_operations():  
-    #     print(op.name)
-    # exit()
-    # start to test file.
-    images = []
-    
-   # file_path_list = ["/data1/face/gongan/align/part-0/image/a9c1797b336c3533e92639327dc523ee/image_0.jpg","/data1/face/gongan/align/part-0/image/a9c1797b336c3533e92639327dc523ee/image_2.jpg"]
-    #file_path_list = ["/data1/face/gongan/align/part-1/image/5547fad513d3330cd90841345b11030f/image_0.jpg","/data1/face/gongan/align/part-0/image/a9c1797b336c3533e92639327dc523ee/image_0.jpg"]
-    file_path_list = ["/home/linkface/minlx/align/hj/71522720070_.pic.jpg","/home/linkface/minlx/align/hj_dt_manual/hj2.png"]#"/home/linkface/minlx/align/mlx/111522720072_.pic.jpg"]#"/home/linkface/minlx/align/hj_dt_manual/hj1.png"]#"/home/linkface/minlx/align/hj/151522720081_.pic.jpg"]
-    
-    
-    for file in file_path_list:
-        image = cv2.imread(file)
-        image_size = 64
-        num_channels = 3
-        image = image[160:480, 96:416]
-        ##   Resizing the image to our desired size and preprocessing will be done exactly as done during training
-        image = cv2.resize(image, (image_size, image_size), cv2.INTER_LINEAR)
-        images.append(image)    
-    images = np.array(images, dtype=np.uint8)    
-    images = images.astype('float32')   
-    images = np.multiply(images, 1.0/255.0) - 0.5
-    ## The input to the network is of shape [None image_size image_size num_channels]. 
-    ## Hence we reshape.
- 
-    x_batch = images.reshape(2, image_size,image_size,num_channels)
-    feature = graph.get_tensor_by_name("import/fc7:0")
-    print(feature)
-    input_op = graph.get_tensor_by_name("import/input_op:0")
-    print(input_op)
-    is_training = graph.get_tensor_by_name("import/is_training:0")
-
-    with tf.Session(graph=graph) as sess: 
-        start_time = time.time()
-        feature = sess.run(feature,feed_dict={input_op: x_batch,is_training:False})
-        #print(feature)
-        print(consin_distance(feature[0],feature[1]))
-        duration = time.time() - start_time
-        print(duration)
-    '''
     
 
 

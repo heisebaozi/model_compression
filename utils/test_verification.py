@@ -85,7 +85,7 @@ if __name__ == '__main__':
     FLAGS = tf.app.flags.FLAGS
     tf.app.flags.DEFINE_integer("--k_num", 10, "number of cross-validation groups")
     tf.app.flags.DEFINE_integer("num_pairs", 6000, "number of pairs")
-    tf.app.flags.DEFINE_string("directory", "/home/linkface/chenxinhua/face_classification_new/", "directory to the work directory.")
+    tf.app.flags.DEFINE_string("directory", "", "directory to the work directory.")
 
     dir_path = FLAGS.directory
     feature_path = os.path.join(dir_path, 'feature', 'lfw_features.mat')

@@ -9,13 +9,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-def report(content_map, subject="report", receivers= ['chenxinhua@linkface.cn']):
+def report(content_map, subject="report", receivers= ['']):
 
     config = {
             'address': 'smtp.exmail.qq.com',
             'port': '25',
-            'domain': 'linkface.cn',
-            'user_name': 'notify@linkface.cn',
+            'domain': '',
+            'user_name': '',
             'password': '3UtFtREb2AoAkCkd',
             'encode': 'utf-8'
             }

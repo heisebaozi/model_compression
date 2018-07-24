@@ -33,9 +33,9 @@ import shutil
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-sys.path.append("/home/linkface/weibiao/mimic/network")
-sys.path.append("/home/linkface/weibiao/mimic/metrics")
-sys.path.append("/home/linkface/weibiao/mimic/utils")
+sys.path.append("/weibiao/mimic/network")
+sys.path.append("/weibiao/mimic/metrics")
+sys.path.append("/weibiao/mimic/utils")
 
 # resnet networks from slim
 from squeezenet import Squeezenet
@@ -47,7 +47,7 @@ FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string("gpu", "0,1", "gpu")
 tf.app.flags.DEFINE_integer("dim_features", 128, "dimension of feature")
 tf.app.flags.DEFINE_integer("num_classes", 129896, "number of classes")
-tf.app.flags.DEFINE_string("directory", "/home/linkface/weibiao/mimic/exp/exp04", "work directory")
+tf.app.flags.DEFINE_string("directory", "//weibiao/mimic/exp/exp04", "work directory")
 tf.app.flags.DEFINE_string("dataset_dir", "/data/face", "dataset directory")
 tf.app.flags.DEFINE_integer("num_epochs", 10000, "number of epoch")
 tf.app.flags.DEFINE_integer("batch_size", 256, "training batch size")
@@ -415,7 +415,7 @@ def main(unused_args):
                                    "step": step, "jdb_verification_accuracy": test_acc, "threshold": th,
                                    "l2_loss": l2_loss_value, "total_loss": total_loss,
                                    "arc_loss": arc_loss_value, "train_acc":train_acc}
-                    receivers = ['minlx@linkface.cn','weibiao@linkface.cn','chenxinhua@linkface.cn']
+                    receivers = ['']
                     report(content_map=content_map, subject=subject, receivers=receivers)
                     
                 step += 1
